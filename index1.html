@@ -1,67 +1,101 @@
-<DOTYPE! HTML>
-  <html>
-    <head>
-      <meta
-        content="width=device-width, initial-scale=1, maximum-scale=1"
-        name="viewport"
-      />
-      <audio controls autoplay hidden="hidden" loop>
-        <source src="back.mp3" type="audio/mpeg" />
-      </audio>
-      <title>Belajar Bersama Menyenangkan</title>
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+      name="viewport"
+    />
+    <title>Belajar Bersama Menyenangkan</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Comic Sans MS", cursive, sans-serif;
+        background-color: #f0f8ff;
+        overflow-x: hidden;
+      }
 
-      <link rel="stylesheet" type="text/css" href="style.css" />
-    </head>
-    <body>
-      <div id="countainer" style="background-image: url(bg\ 5.webp)">
-        <!--ini logo-->
-        <!-- <img src="logo.png" class="logonya"> -->
+      #countainer {
+        text-align: center;
+        padding: 20px;
+        background-size: cover;
+        background-position: center;
+        min-height: 100vh;
+      }
 
-        <!--ANIMASI AWAN-->
-        <!-- <div class="aw no1"><img src="awan2.png" /></div>
-      <div class="aw no2"><img src="awan2.png" /></div>
-      <div class="aw no3"><img src="awan2.png" /></div>
-      <div class="aw no4"><img src="awan2.png" /></div>
-      <div class="aw no5"><img src="awan2.png" /></div>
-      <div class="aw no1"><img src="awan2.png" /></div>
-      <div class="aw no2"><img src="awan2.png" /></div>
-      <div class="aw no3"><img src="awan2.png" /></div>
-      <div class="aw no4"><img src="awan2.png" /></div> -->
+      h1 {
+        font-size: 3em;
+        text-align: center;
+        color: #ffffff;
+        background: linear-gradient(45deg, #ff6f61, #ffccbc);
+        background-size: 400% 400%;
+        padding: 15px 30px;
+        border-radius: 15px;
+        display: inline-block;
+        animation: gradientMove 3s infinite;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+      }
 
-        <div id="menu">
-          <div id="navigasi">
-            <ul>
-              <li><a href="tutorial/tutorial.html">Video Tutorial</a></li>
-              <li><a href="huruf/alphabets.html">Belajar Huruf</a></li>
-              <li><a href="angka/angka.html">Belajar Angka</a></li>
-              <li><a href="warna/color.html">Belajar Warna</a></li>
-              <li><a href="hewan/index.html">Belajar Suara Hewan</a></li>
-              <li><a href="game/index.html">Game</a></li>
-              <li><a href="about/indexa.html">Tentang Kami</a></li>
-              <li><a href="#popup">Berikan Penilaian</a></li>
-            </ul>
-          </div>
-        </div>
+      @keyframes gradientMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
 
-        <!--popup Untuk Penilaian..............................................................................-->
-        <div id="popup">
-          <div class="window">
-            <a href="#" class="close-button" title="Close">X</a>
-            <h3>Mohon Berikan Penilaian Anda</h3>
-            <hr />
-            <iframe
-              src="https://docs.google.com/forms/d/1_0FbT-MzYvankOrnrqWmv5Smo9aQmD4Cch2KtuAQBCA/viewform?embedded=true"
-              width="760"
-              height="450"
-              frameborder="0"
-              marginheight="0"
-              marginwidth="0"
-              >Loading...</iframe
-            >
-            <hr />
-          </div>
+      #menu {
+        margin-top: 50px;
+      }
+
+      #navigasi {
+        text-align: center;
+        margin-top: 40px;
+      }
+
+      #navigasi ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      #navigasi ul li {
+        margin: 0;
+      }
+
+      #navigasi ul li a {
+        text-decoration: none;
+        background-color: #ffb74d;
+        color: white;
+        padding: 20px 30px;
+        border-radius: 25px;
+        font-size: 1.3em;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="countainer" style="background-image: url('bg 5.webp')">
+      <h1>Belajar Bersama Menyenangkan</h1>
+      <div id="menu">
+        <div id="navigasi">
+          <ul>
+            <li><a href="huruf/alphabets.html">Belajar Huruf</a></li>
+            <li><a href="angka/angka.html">Belajar Angka</a></li>
+            <li><a href="warna/color.html">Belajar Warna</a></li>
+            <li><a href="hewan/animal.html">Mengenal Hewan</a></li>
+            <li><a href="game/index.html">Game</a></li>
+          </ul>
         </div>
       </div>
-    </body>
-  </html>
-</DOTYPE!>
+    </div>
+  </body>
+</html>

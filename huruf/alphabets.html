@@ -18,7 +18,7 @@
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
       }
       .letter {
-        font-size: 15em; /* Ukuran huruf yang sangat besar */
+        font-size: 15em;
         color: #ff5722;
         margin: 20px 0;
         font-weight: bold;
@@ -50,6 +50,37 @@
       .navigation button:disabled {
         background-color: #ccc;
         cursor: not-allowed;
+      }
+      .toggle-case {
+        margin: 20px;
+        background-color: #00796b;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        font-size: 1em;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+      .toggle-case:hover {
+        background-color: #004d40;
+        transform: scale(1.1);
+      }
+      .back-button {
+        display: block;
+        margin: 30px auto;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1em;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+      .back-button:hover {
+        background-color: #45a049;
+        transform: scale(1.1);
       }
       .background-shape {
         position: absolute;
@@ -114,36 +145,36 @@
           opacity: 1;
         }
       }
-      .back-button {
-        display: block;
-        margin: 30px auto;
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        font-size: 1em;
-        cursor: pointer;
-        border-radius: 5px;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-        transition: background-color 0.3s, transform 0.3s;
-      }
-      .back-button:hover {
-        background-color: #45a049;
-        transform: scale(1.1);
-      }
     </style>
     <script>
       let currentLetterIndex = 0;
-      const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+      let isUpperCase = true;
+      const upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+      const lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz".split("");
+
+      function getLetters() {
+        return isUpperCase ? upperCaseLetters : lowerCaseLetters;
+      }
 
       function showLetter(index) {
+        const letters = getLetters();
         document.getElementById("letter").innerText = letters[index];
         document.getElementById("prevButton").disabled = index === 0;
         document.getElementById("nextButton").disabled =
           index === letters.length - 1;
       }
 
+      function toggleCase() {
+        isUpperCase = !isUpperCase;
+        currentLetterIndex = 0;
+        showLetter(currentLetterIndex);
+        document.getElementById("toggleCaseButton").innerText = isUpperCase
+          ? "Tampilkan Huruf Kecil"
+          : "Tampilkan Huruf Besar";
+      }
+
       function nextLetter() {
+        const letters = getLetters();
         if (currentLetterIndex < letters.length - 1) {
           currentLetterIndex++;
           showLetter(currentLetterIndex);
@@ -182,6 +213,9 @@
       <button id="prevButton" onclick="prevLetter()">Sebelumnya</button>
       <button id="nextButton" onclick="nextLetter()">Berikutnya</button>
     </div>
+    <button id="toggleCaseButton" class="toggle-case" onclick="toggleCase()">
+      Tampilkan Huruf Kecil
+    </button>
     <button class="back-button" onclick="location.href='../index1.html'">
       Kembali ke Halaman Utama
     </button>
