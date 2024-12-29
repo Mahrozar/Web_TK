@@ -1,35 +1,194 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Permainan Edukasi Bangun Ruang & Bangun Datar</title>
-    <link rel="stylesheet" href="style.css" />
-    <audio controls autoplay hidden="hidden" loop>
-      <source src="audio/bgm.mp3" type="audio/mpeg" />
-    </audio>
-  </head>
-  <body>
-    <div id="container" style="background-image: url('gambar/bg12.jpeg')">
-      <header>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Permainan Edukasi Bangun Ruang & Bangun Datar</title>
+  <audio controls autoplay hidden="hidden" loop>
+    <source src="audio/bgm.mp3" type="audio/mpeg" />
+  </audio>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      color: #333;
+      background: linear-gradient(120deg, #81d4fa, #b39ddb, #f48fb1);
+      background-size: 300% 300%;
+      animation: gradientMove 8s infinite;
+      overflow: hidden;
+    }
+
+    @keyframes gradientMove {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    #container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .h1-container {
+      display: inline-block;
+      padding: 20px 30px;
+      border: 3px solid #fff;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 2s;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #fff;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+      margin-bottom: 20px;
+      animation: fadeIn 2s;
+    }
+
+    .menu {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 40px 0;
+    }
+
+    .menu-item {
+      text-decoration: none;
+      background-color: #ffab40;
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.5em;
+      border-radius: 20px;
+      font-weight: bold;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .menu-item:hover {
+      background-color: #ff9100;
+      transform: scale(1.1);
+    }
+
+    footer {
+      margin-top: 40px;
+    }
+
+    footer a {
+      text-decoration: none;
+      color: #ffab40;
+      font-weight: bold;
+    }
+
+    footer a:hover {
+      color: #ff9100;
+    }
+
+    /* Floating Shapes */
+    .shape {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: float 8s infinite ease-in-out;
+    }
+
+    .shape1 {
+      width: 150px;
+      height: 150px;
+      top: 10%;
+      left: 15%;
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .shape2 {
+      width: 200px;
+      height: 200px;
+      bottom: 10%;
+      right: 20%;
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .shape3 {
+      width: 100px;
+      height: 100px;
+      top: 50%;
+      left: 70%;
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-30px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+    <div class="shape shape3"></div>
+
+    <header>
+      <div class="h1-container">
         <h1>Selamat Datang di Dunia Bangun Ruang dan Bangun Datar!</h1>
-      </header>
+      </div>
+    </header>
 
-      <main>
-        <p>Pilihlah kategori yang ingin kamu pelajari:</p>
-        <div class="menu">
-          <a href="indexruang.html" class="menu-item">Bangun Ruang</a>
-          <a href="indexdatar.html" class="menu-item">Bangun Datar</a>
-        </div>
-      </main>
+    <main>
+      <p>Pilihlah kategori yang ingin kamu pelajari:</p>
+      <div class="menu">
+        <a href="indexruang.html" class="menu-item">Bangun Ruang</a>
+        <a href="indexdatar.html" class="menu-item">Bangun Datar</a>
+      </div>
+    </main>
 
-      <footer>
-        <div id="navigasi">
-          <ul>
-            <li><a href="../index1.html"><< Kembali ke Halaman Utama</a></li>
-          </ul>
-        </div>
-      </footer>
-    </div>
-  </body>
+    <footer>
+      <div id="navigasi">
+        <ul>
+          <li><a href="../index1.html">
+              << Kembali ke Halaman Utama</a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+</body>
+
 </html>
