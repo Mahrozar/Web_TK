@@ -9,7 +9,7 @@
     <source src="audio/bgm.mp3" type="audio/mpeg" />
   </audio>
   <style>
-    body {
+    /* body {
       margin: 0;
       font-family: "Comic Sans MS", cursive, sans-serif;
       color: #333;
@@ -17,6 +17,41 @@
       background-size: 300% 300%;
       animation: gradientMove 8s infinite;
       overflow: hidden;
+    } */
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #ffcc80, #ffe0b2);
+      text-align: center;
+      padding: 20px;
+      color: #333;
+    }
+
+    .background-shape {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 50%;
+      animation: float 6s infinite ease-in-out;
+      z-index: -1;
+    }
+
+    .star {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: yellow;
+      border-radius: 50%;
+      animation: twinkle 3s infinite;
+    }
+
+    .floating-stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
     }
 
     @keyframes gradientMove {
@@ -84,6 +119,18 @@
 
     .menu-item:hover {
       background-color: #ff9100;
+      transform: scale(1.1);
+    }
+
+    /* Kembali ke Halaman Utama */
+    .kembali {
+      background-color: #ff7043;
+      /* Warna khusus untuk tombol kembali */
+    }
+
+    .kembali:hover {
+      background-color: #f4511e;
+      /* Warna saat hover */
       transform: scale(1.1);
     }
 
@@ -182,7 +229,8 @@
     <footer>
       <div id="navigasi">
         <ul>
-          <li><a href="../index1.html">
+          <li>
+            <a href="../index1.html" class="menu-item kembali">
               << Kembali ke Halaman Utama</a>
           </li>
         </ul>
