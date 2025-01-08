@@ -10,13 +10,13 @@
         body {
             margin: 0;
             font-family: 'Comic Sans MS', cursive, sans-serif;
-            background: linear-gradient(135deg, #A8C0D9, #C6E0F0);
+            background: linear-gradient(135deg, #ffcc80, #ffe0b2);
             background-size: 300% 300%;
             animation: gradientMove 8s infinite;
             text-align: center;
             color: #333;
             background-image: url('https://www.transparenttextures.com/patterns/cubes.png'),
-                linear-gradient(135deg, #A8C0D9, #C6E0F0);
+                linear-gradient(135deg, #ffcc80, #ffe0b2);
             background-blend-mode: overlay;
             position: relative;
         }
@@ -178,7 +178,7 @@
             <button onclick="tampilkanBangun('persegi panjang')" class="menu-item">Persegi Panjang</button>
             <button onclick="tampilkanBangun('segitiga')" class="menu-item">Segitiga</button>
             <button onclick="tampilkanBangun('lingkaran')" class="menu-item">Lingkaran</button>
-            <button onclick="tampilkanBangun('trapesium')" class="menu-item">Trapesium</button>
+            <button onclick="tampilkanBangun('segilima')" class="menu-item">segilima</button>
             <button onclick="tampilkanBangun('bintang')" class="menu-item">Bintang</button>
         </div>
 
@@ -195,25 +195,24 @@
         function tampilkanBangun(bangun) {
             let konten = document.getElementById('konten');
             let gambar = '';
-
             if (bangun === 'persegi') {
                 gambar = '<img src="bangun datar/persegi.png" alt="Persegi">';
-                konten.innerHTML = '<h3>Persegi</h3><p class="penjelasan">Persegi adalah bangun datar dengan 4 sisi yang sama panjang dan memiliki 4 sudut siku-siku.</p>' + gambar;
+                konten.innerHTML = '<h3>Persegi</h3><p class="penjelasan">Persegi adalah bangun datar dengan 4 sisi yang sama panjang dan memiliki 4 sudut siku-siku (90°).</p>' + gambar;
             } else if (bangun === 'persegi panjang') {
-                gambar = '<img src="bangun datar/persegipanjang.png" alt="persegi panjang">';
-                konten.innerHTML = '<h3>Segitiga</h3><p class="penjelasan">Segitiga adalah bangun datar dengan 3 sisi dan 3 sudut yang jumlahnya selalu 180 derajat.</p>' + gambar;
+                gambar = '<img src="bangun datar/persegipanjang.png" alt="Persegi Panjang">';
+                konten.innerHTML = '<h3>Persegi Panjang</h3><p class="penjelasan">Persegi panjang adalah bangun datar dengan 2 pasang sisi sejajar yang berhadapan dan memiliki panjang berbeda. Semua sudutnya siku-siku (90°).</p>' + gambar;
             } else if (bangun === 'segitiga') {
                 gambar = '<img src="bangun datar/segitiga.png" alt="Segitiga">';
-                konten.innerHTML = '<h3>Segitiga</h3><p class="penjelasan">Segitiga adalah bangun datar dengan 3 sisi dan 3 sudut yang jumlahnya selalu 180 derajat.</p>' + gambar;
+                konten.innerHTML = '<h3>Segitiga</h3><p class="penjelasan">Segitiga adalah bangun datar yang memiliki 3 sisi dan 3 sudut. Jumlah sudut dalam segitiga selalu 180°.</p>' + gambar;
             } else if (bangun === 'lingkaran') {
                 gambar = '<img src="bangun datar/lingkaran.png" alt="Lingkaran">';
-                konten.innerHTML = '<h3>Lingkaran</h3><p class="penjelasan">Lingkaran adalah bangun datar yang memiliki jarak sama dari pusat ke semua titik di tepinya.</p>' + gambar;
-            } else if (bangun === 'trapesium') {
-                gambar = '<img src="bangun datar/trapesium.png" alt="Trapesium">';
-                konten.innerHTML = '<h3>Trapesium</h3><p class="penjelasan">Trapesium adalah bangun datar dengan sepasang sisi sejajar dan bentuk lainnya tidak sejajar.</p>' + gambar;
+                konten.innerHTML = '<h3>Lingkaran</h3><p class="penjelasan">Lingkaran adalah bangun datar yang terdiri dari titik-titik yang memiliki jarak sama dari satu titik pusat. Jarak ini disebut jari-jari.</p>' + gambar;
+            } else if (bangun === 'segilima') {
+                gambar = '<img src="bangun datar/pentagon2.png" alt="Pentagon">';
+                konten.innerHTML = '<h3>Trapesium</h3><p class="penjelasan">Trapesium adalah bangun datar dengan sepasang sisi sejajar yang panjangnya berbeda. Terdapat berbagai jenis trapesium seperti sama kaki, siku-siku, dan sembarang.</p>' + gambar;
             } else if (bangun === 'bintang') {
                 gambar = '<img src="bangun datar/bintang.png" alt="Bintang">';
-                konten.innerHTML = '<h3>Trapesium</h3><p class="penjelasan">Trapesium adalah bangun datar dengan sepasang sisi sejajar dan bentuk lainnya tidak sejajar.</p>' + gambar;
+                konten.innerHTML = '<h3>Bintang</h3><p class="penjelasan">Bintang adalah bangun geometri dengan pola simetri tertentu yang sering kali memiliki lima atau lebih sudut yang menyerupai sinar.</p>' + gambar;
             }
         }
     </script>

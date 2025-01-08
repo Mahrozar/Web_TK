@@ -1,103 +1,117 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta
-      content="width=device-width, initial-scale=1, maximum-scale=1"
-      name="viewport"
-    />
-    <title>Belajar Bersama Menyenangkan</title>
-    <style>
-      body {
-        margin: 0;
-        font-family: "Comic Sans MS", cursive, sans-serif;
-        background-color: #f0f8ff;
-        overflow-x: hidden;
+
+<head>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport" />
+  <title>Belajar Bersama Menyenangkan</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      background-color: #f0f8ff;
+      overflow-x: hidden;
+    }
+
+    #countainer {
+      text-align: center;
+      padding: 20px;
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 3em;
+      text-align: center;
+      color: #ffffff;
+      background: linear-gradient(45deg, #ff6f61, #ffccbc);
+      background-size: 400% 400%;
+      padding: 15px 30px;
+      border-radius: 15px;
+      display: inline-block;
+      animation: gradientMove 3s infinite;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes gradientMove {
+      0% {
+        background-position: 0% 50%;
       }
 
-      #countainer {
-        text-align: center;
-        padding: 20px;
-        background-size: cover;
-        background-position: center;
-        min-height: 100vh;
+      50% {
+        background-position: 100% 50%;
       }
 
-      h1 {
-        font-size: 3em;
-        text-align: center;
-        color: #ffffff;
-        background: linear-gradient(45deg, #ff6f61, #ffccbc);
-        background-size: 400% 400%;
-        padding: 15px 30px;
-        border-radius: 15px;
-        display: inline-block;
-        animation: gradientMove 3s infinite;
-        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+      100% {
+        background-position: 0% 50%;
       }
+    }
 
-      @keyframes gradientMove {
-        0% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-        100% {
-          background-position: 0% 50%;
-        }
-      }
+    #menu {
+      margin-top: 50px;
+    }
 
-      #menu {
-        margin-top: 50px;
-      }
+    #navigasi {
+      text-align: center;
+      margin-top: 40px;
+    }
 
-      #navigasi {
-        text-align: center;
-        margin-top: 40px;
-      }
+    #navigasi ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
 
-      #navigasi ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 20px;
-      }
+    .row {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 80px;
+      /* Atur jarak vertikal antar baris */
+    }
 
-      #navigasi ul li {
-        margin: 0;
-      }
+    #navigasi ul li {
+      margin: 0;
+    }
 
-      #navigasi ul li a {
-        text-decoration: none;
-        background-color: #ffb74d;
-        color: white;
-        padding: 20px 30px;
-        border-radius: 25px;
-        font-size: 1.3em;
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-        font-weight: bold;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="countainer" style="background-image: url('bg 5.webp')">
-      <h1>Belajar Bersama Menyenangkan</h1>
-      <div id="menu">
-        <div id="navigasi">
-          <ul>
+    #navigasi ul li a {
+      text-decoration: none;
+      background-color: #ffb74d;
+      color: white;
+      padding: 20px 30px;
+      border-radius: 25px;
+      font-size: 1.3em;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="countainer" style="background-image: url('bg 5.webp')">
+    <h1>Belajar Bersama Menyenangkan</h1>
+    <div id="menu">
+      <div id="navigasi">
+        <ul>
+          <!-- Baris pertama dengan tiga tombol -->
+          <div class="row">
             <li><a href="huruf/alphabets.html">Belajar Huruf</a></li>
             <li><a href="angka/angka.html">Belajar Angka</a></li>
             <li><a href="warna/color.html">Belajar Warna</a></li>
+          </div>
+          <!-- Baris kedua dengan dua tombol -->
+          <div class="row">
             <li><a href="hewan/animal.html">Mengenal Hewan</a></li>
-            <li>
-              <a href="game/index.html">Geometri</a>
-            </li>
-          </ul>
-        </div>
+            <li><a href="game/index.html">Geometri</a></li>
+            <li><a href="bermain/game1.html">Game</a></li>
+          </div>
+        </ul>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

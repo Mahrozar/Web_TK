@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tangkap Angka</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            background-color: #f0f8ff;
+        }
+
+        canvas {
+            display: block;
+            margin: 20px auto;
+            background: #b3e5fc;
+            border: 2px solid #0288d1;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .top-right {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2em;
+            font-weight: bold;
+            color: white;
+            background-color: #0288d1;
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .center {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        #instruction {
+            font-size: 3em;
+            color: #0288d1;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        #pauseButton {
+            font-size: 1.5em;
+            padding: 15px 30px;
+            margin-top: 20px;
+            border: none;
+            background-color: #0288d1;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #pauseButton:hover {
+            background-color: #026aa7;
+        }
+
+        .score-box {
+            background-color: #0288d1;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            font-size: 1.5em;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Bagian Skor di Pojok Kanan Atas -->
+    <div class="top-right" id="score">
+        Skor: <span id="score-value" class="score-box">0</span>
+    </div>
+
+    <!-- Bagian Tengah -->
+    <div class="center">
+        <p id="instruction">Tangkap angka: <span id="target-number">0</span></p>
+        <button id="pauseButton">Pause</button>
+    </div>
+
+    <!-- Canvas -->
+    <canvas id="gameCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+
+        // Menyesuaikan ukuran canvas
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Variabel permainan
+        let targetNumber = Math.floor(Math.random() * 10);
+        let score = 0;
+        let isPaused = false;
+        const fallingNumbers = [];
+        const maxNumbers = 7; // Maksimal angka yang jatuh sekaligus
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
+
+        // Elemen tampilan
+        const targetNumberDisplay = document.getElementById("target-number");
+        const scoreDisplay = document.getElementById("score-value");
+        const pauseButton = document.getElementById("pauseButton");
+
+        // Membuat angka jatuh
+        function createFallingNumber() {
+            const isTarget = Math.random() < 0.3; // Peluang angka target 30%
+            const number = isTarget ? targetNumber : Math.floor(Math.random() * 10);
+            return {
+                number,
+                x: Math.random() * (canvasWidth - 50),
+                y: -50,
+                speed: Math.random() * 1 + 1, // Kecepatan lambat dan bervariasi
+                isTarget
+            };
+        }
+
+        // Perbarui posisi angka yang jatuh
+        function updateFallingNumbers() {
+            for (let i = 0; i < fallingNumbers.length; i++) {
+                fallingNumbers[i].y += fallingNumbers[i].speed;
+
+                // Hapus angka jika melewati bagian bawah layar
+                if (fallingNumbers[i].y > canvasHeight) {
+                    fallingNumbers.splice(i, 1);
+                    i--;
+                }
+            }
+
+            // Tambah angka baru jika jumlah kurang dari batas
+            if (fallingNumbers.length < maxNumbers && Math.random() < 0.05) {
+                fallingNumbers.push(createFallingNumber());
+            }
+        }
+
+        // Gambar angka jatuh dalam lingkaran
+        function drawFallingNumbers() {
+            ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+            for (const num of fallingNumbers) {
+                ctx.beginPath();
+                ctx.arc(num.x, num.y, 40, 0, 2 * Math.PI); // Lingkaran
+                ctx.fillStyle = num.isTarget ? "#ffcc00" : "#ff6f61";
+                ctx.fill();
+                ctx.closePath();
+
+                ctx.fillStyle = "white";
+                ctx.font = "30px Comic Sans MS";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillText(num.number, num.x, num.y);
+            }
+        }
+
+        // Deteksi klik pada lingkaran
+        canvas.addEventListener("click", (event) => {
+            if (isPaused) return;
+
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = event.clientX - rect.left;
+            const mouseY = event.clientY - rect.top;
+
+            for (let i = 0; i < fallingNumbers.length; i++) {
+                const num = fallingNumbers[i];
+                const distance = Math.sqrt(
+                    Math.pow(mouseX - num.x, 2) + Math.pow(mouseY - num.y, 2)
+                );
+
+                if (distance <= 40) {
+                    if (num.number === targetNumber) {
+                        score++;
+                        targetNumber = Math.floor(Math.random() * 10);
+                        targetNumberDisplay.textContent = targetNumber;
+                    }
+                    fallingNumbers.splice(i, 1);
+                    break;
+                }
+            }
+
+            scoreDisplay.textContent = score;
+        });
+
+        // Loop permainan
+        function gameLoop() {
+            if (!isPaused) {
+                updateFallingNumbers();
+                drawFallingNumbers();
+            }
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Mulai permainan
+        function initGame() {
+            for (let i = 0; i < maxNumbers; i++) {
+                fallingNumbers.push(createFallingNumber());
+            }
+            targetNumberDisplay.textContent = targetNumber;
+            scoreDisplay.textContent = score;
+            gameLoop();
+        }
+
+        // Tombol pause/resume
+        pauseButton.addEventListener("click", () => {
+            isPaused = !isPaused;
+            pauseButton.textContent = isPaused ? "Resume" : "Pause";
+        });
+
+        initGame();
+    </script>
+</body>
+
+</html>
