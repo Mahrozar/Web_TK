@@ -1,209 +1,248 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pengenalan Hewan</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background: linear-gradient(to bottom, #81d4fa, #e1f5fe);
-        text-align: center;
-        padding: 20px;
-        color: #333;
-        margin: 0;
-        overflow: auto;
-      }
 
-      h1 {
-        color: #0288d1;
-        font-size: 2.5em;
-        margin-bottom: 20px;
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pengenalan Hewan</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #81d4fa, #e1f5fe);
+      text-align: center;
+      padding: 20px;
+      color: #333;
+      margin: 0;
+      overflow: auto;
+    }
+
+    h1 {
+      color: #0288d1;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+
+    .animal-name {
+      font-size: 2em;
+      color: #0277bd;
+      margin: 20px 0;
+      font-weight: bold;
+      opacity: 0;
+      animation: fadeIn 1.5s forwards;
+    }
+
+    .animal-image {
+      max-width: 300px;
+      height: auto;
+      border: 5px solid #0288d1;
+      border-radius: 10px;
+      margin: 20px 0;
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+    }
+
+    @keyframes fadeIn {
+      0% {
         opacity: 0;
-        animation: fadeIn 1s forwards;
       }
 
-      .animal-name {
-        font-size: 2em;
-        color: #0277bd;
-        margin: 20px 0;
-        font-weight: bold;
-        opacity: 0;
-        animation: fadeIn 1.5s forwards;
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .navigation {
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeIn 2.5s forwards;
+    }
+
+    .navigation button {
+      background-color: #0288d1;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 5px;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .navigation button:hover {
+      background-color: #0277bd;
+      transform: scale(1.1);
+    }
+
+    .navigation button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .back-button {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeIn 3s forwards;
+    }
+
+    .back-button:hover {
+      background-color: #45a049;
+      transform: scale(1.1);
+    }
+
+    .background-shape {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 50%;
+      animation: float 6s infinite ease-in-out;
+      z-index: -1;
+    }
+
+    .shape1 {
+      width: 200px;
+      height: 200px;
+      top: 10%;
+      left: 15%;
+      background: #ffccbc;
+    }
+
+    .shape2 {
+      width: 300px;
+      height: 300px;
+      top: 40%;
+      right: 20%;
+      background: #fff8e1;
+    }
+
+    .shape3 {
+      width: 150px;
+      height: 150px;
+      bottom: 15%;
+      left: 20%;
+      background: #f8bbd0;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
       }
 
-      .animal-image {
-        max-width: 300px;
-        height: auto;
-        border: 5px solid #0288d1;
-        border-radius: 10px;
-        margin: 20px 0;
-        opacity: 0;
-        animation: fadeIn 2s forwards;
+      50% {
+        transform: translateY(-20px);
       }
+    }
 
-      @keyframes fadeIn {
-        0% {
-          opacity: 0;
-        }
+    .sound-button {
+      background-color: #ff9800;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 10px;
+      transition: background-color 0.3s, transform 0.3s;
+    }
 
-        100% {
-          opacity: 1;
-        }
-      }
+    .sound-button:hover {
+      background-color: #f57c00;
+      transform: scale(1.1);
+    }
+  </style>
+  <script>
+    const animals = [
+      { name: "Kucing", image: "cat.webp", sound: "suarafiks/kucing.mp3" },
+      { name: "Anjing", image: "dog.webp", sound: "suarafiks/anjeeng.wav" },
+      { name: "Sapi", image: "cow.webp", sound: "suarafiks/sapi.wav" },
+      { name: "Ayam", image: "chicken.webp", sound: "suarafiks/ayam.wav" },
+      { name: "Gajah", image: "elephant.webp", sound: "suarafiks/gajah.mp3" },
+      { name: "Kelinci", image: "rabbit.webp", sound: "" },
+      { name: "Kuda", image: "horse.webp", sound: "suarafiks/kuda.wav" },
+      { name: "Panda", image: "panda.webp", sound: "suarafiks/panda.wav" },
+      { name: "Singa", image: "lion.webp", sound: "suarafiks/singa.mp3" },
+      { name: "Harimau", image: "tiger.webp", sound: "suarafiks/harimau.mp3" },
+      { name: "Zebra", image: "zebra.webp", sound: "suarafiks/zebra.wav" },
+      { name: "Jerapah", image: "giraffe.webp", sound: "suarafiks/jerapah.wav" },
+      { name: "Buaya", image: "crocodile.webp", sound: "suarafiks/buaya.wav" },
+      { name: "Kangguru", image: "kangaroo.webp", sound: "suarafiks/kangguru.wav" },
+      { name: "Koala", image: "koala.webp", sound: "suarafiks/koala.mp4" },
+    ];
+    let currentAnimalIndex = 0;
 
-      .navigation {
-        margin-top: 20px;
-        opacity: 0;
-        animation: fadeIn 2.5s forwards;
-      }
+    function showAnimal(index) {
+      const animal = animals[index];
+      document.getElementById("animalName").innerText = animal.name;
+      document.getElementById("animalImage").src = animal.image;
+      document.getElementById("prevButton").disabled = index === 0;
+      document.getElementById("nextButton").disabled =
+        index === animals.length - 1;
 
-      .navigation button {
-        background-color: #0288d1;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        font-size: 1em;
-        cursor: pointer;
-        border-radius: 5px;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-        transition: background-color 0.3s, transform 0.3s;
-      }
 
-      .navigation button:hover {
-        background-color: #0277bd;
-        transform: scale(1.1);
-      }
+      // Perbarui tombol suara
+      const soundButton = document.getElementById("soundButton");
+      soundButton.style.display = animal.sound ? "inline-block" : "none";
+    }
 
-      .navigation button:disabled {
-        background-color: #ccc;
-        cursor: not-allowed;
-      }
-
-      .back-button {
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        font-size: 1em;
-        cursor: pointer;
-        border-radius: 5px;
-        margin-top: 20px;
-        opacity: 0;
-        animation: fadeIn 3s forwards;
-      }
-
-      .back-button:hover {
-        background-color: #45a049;
-        transform: scale(1.1);
-      }
-
-      .background-shape {
-        position: absolute;
-        background: rgba(255, 255, 255, 0.4);
-        border-radius: 50%;
-        animation: float 6s infinite ease-in-out;
-        z-index: -1;
-      }
-
-      .shape1 {
-        width: 200px;
-        height: 200px;
-        top: 10%;
-        left: 15%;
-        background: #ffccbc;
-      }
-
-      .shape2 {
-        width: 300px;
-        height: 300px;
-        top: 40%;
-        right: 20%;
-        background: #fff8e1;
-      }
-
-      .shape3 {
-        width: 150px;
-        height: 150px;
-        bottom: 15%;
-        left: 20%;
-        background: #f8bbd0;
-      }
-
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-
-        50% {
-          transform: translateY(-20px);
-        }
-      }
-    </style>
-    <script>
-      const animals = [
-        { name: "Kucing", image: "cat.webp" },
-        { name: "Anjing", image: "dog.webp" },
-        { name: "Sapi", image: "cow.webp" },
-        { name: "Ayam", image: "chicken.webp" },
-        { name: "Gajah", image: "elephant.webp" },
-        { name: "Kelinci", image: "rabbit.webp" },
-        { name: "Kuda", image: "horse.webp" },
-        { name: "Panda", image: "panda.webp" },
-        { name: "Singa", image: "lion.webp" },
-        { name: "Harimau", image: "tiger.webp" },
-        { name: "Zebra", image: "zebra.webp" },
-        { name: "Jerapah", image: "giraffe.webp" },
-        { name: "Buaya", image: "crocodile.webp" },
-        { name: "Kangguru", image: "kangaroo.webp" },
-        { name: "Koala", image: "koala.webp" },
-      ];
-      let currentAnimalIndex = 0;
-
-      function showAnimal(index) {
-        const animal = animals[index];
-        document.getElementById("animalName").innerText = animal.name;
-        document.getElementById("animalImage").src = animal.image;
-        document.getElementById("prevButton").disabled = index === 0;
-        document.getElementById("nextButton").disabled =
-          index === animals.length - 1;
-      }
-
-      function nextAnimal() {
-        if (currentAnimalIndex < animals.length - 1) {
-          currentAnimalIndex++;
-          showAnimal(currentAnimalIndex);
-        }
-      }
-
-      function prevAnimal() {
-        if (currentAnimalIndex > 0) {
-          currentAnimalIndex--;
-          showAnimal(currentAnimalIndex);
-        }
-      }
-
-      window.onload = function () {
+    function nextAnimal() {
+      if (currentAnimalIndex < animals.length - 1) {
+        currentAnimalIndex++;
         showAnimal(currentAnimalIndex);
-      };
-    </script>
-  </head>
+      }
+    }
 
-  <body>
-    <h1>Belajar Hewan</h1>
-    <div id="animalName" class="animal-name"></div>
-    <img id="animalImage" class="animal-image" src="" alt="Gambar Hewan" />
-    <div class="navigation">
-      <button id="prevButton" onclick="prevAnimal()">Sebelumnya</button>
-      <button id="nextButton" onclick="nextAnimal()">Berikutnya</button>
-    </div>
-    <button class="back-button" onclick="window.location.href='../index1.html'">
-      Kembali ke Halaman Utama
-    </button>
+    function prevAnimal() {
+      if (currentAnimalIndex > 0) {
+        currentAnimalIndex--;
+        showAnimal(currentAnimalIndex);
+      }
+    }
 
-    <div class="background-shape shape1"></div>
-    <div class="background-shape shape2"></div>
-    <div class="background-shape shape3"></div>
-  </body>
+    let audio = new Audio();
+
+    function playSound() {
+      const animal = animals[currentAnimalIndex];
+      if (animal.sound) {
+        audio.src = animal.sound;
+        audio.play();
+      } else {
+        alert("Suara untuk hewan ini belum tersedia.");
+      }
+    }
+
+
+    window.onload = function () {
+      showAnimal(currentAnimalIndex);
+    };
+  </script>
+</head>
+
+<body>
+  <h1>Belajar Hewan</h1>
+  <div id="animalName" class="animal-name"></div>
+  <img id="animalImage" class="animal-image" src="" alt="Gambar Hewan" />
+  <div class="navigation">
+    <button id="prevButton" onclick="prevAnimal()">Sebelumnya</button>
+    <button id="soundButton" class="sound-button" onclick="playSound()">Putar Suara</button>
+    <button id="nextButton" onclick="nextAnimal()">Berikutnya</button>
+  </div>
+  <button class="back-button" onclick="window.location.href='../index1.html'">
+    Kembali ke Halaman Utama
+  </button>
+
+  <div class="background-shape shape1"></div>
+  <div class="background-shape shape2"></div>
+  <div class="background-shape shape3"></div>
+</body>
+
 </html>
